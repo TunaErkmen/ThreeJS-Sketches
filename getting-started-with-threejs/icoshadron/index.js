@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'jsm/controls/OrbitControls.js';
 
+
 const w= window.innerWidth;
 const h= window.innerHeight;
 const renderer = new THREE.WebGLRenderer({antialias: true}); 
@@ -14,6 +15,7 @@ const far = 1000;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.z = 2;
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
@@ -29,6 +31,7 @@ const mesh = new THREE.Mesh(geo, mat);
 scene.add(mesh);
 
 
+
 const wireMath = new THREE.MeshBasicMaterial ({
     color: 0xffffff,
     wireframe: true
@@ -37,6 +40,7 @@ const wireMath = new THREE.MeshBasicMaterial ({
 const wireMesh = new THREE.Mesh(geo, wireMath);
 wireMesh.scale.setScalar(1.00001);
 mesh.add(wireMesh);
+
 
 const hemiLight = new THREE.HemisphereLight(0x0099ff, 0xaa5500);
 scene.add(hemiLight);
@@ -51,3 +55,4 @@ function animate(t=0) {
 }
 
 animate();
+
